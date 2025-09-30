@@ -1,0 +1,34 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+
+  client:
+    build: ./services/client
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongo
+
+  commande:
+    build: ./services/commande
+    ports:
+      - '3002:3002'
+    depends_on:
+      - mongo
+
+  transporteur:
+    build: ./services/transporteur
+    ports:
+      - '3003:3003'
+    depends_on:
+      - mongo
+
+  notification:
+    build: ./services/notification
+    ports:
+      - '3004:3004'
+    depends_on:
+      - mongo
